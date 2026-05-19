@@ -25,7 +25,18 @@ def health_check():
         "message": "SenSante API is running"
     }
 
-
+@app.get("/model-info")
+def model_info():
+    """renvoie les information sur le modele"""
+    
+    
+    
+    return {
+        "type_modele": type(model).__name__,
+        "nombre_arbres": model.n_estimators,
+        "classes_possibles": list(model.classes_),
+        "nombre_features": len(feature_cols)
+    }
 # --- Schémas Pydantic ---
 
 class PatientInput(BaseModel):
